@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result | Student Performance Prediction</title>
+    <meta name="description" content="View your student performance prediction result – Pass or Fail.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Shared stylesheet from frontend/static/css/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="header">
+        <h1>🎓 Student Performance Prediction</h1>
+        <p>Predict whether a student will
+           <span class="pass-text">Pass</span> or <span class="fail-text">Fail</span>.</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Result Banner -->
+        <div class="result-banner {{ 'pass' if result == 'PASS' else 'fail' }}">
+            <div class="result-icon-wrap">
+                {% if result == 'PASS' %}
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {% else %}
+                <svg viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6"  y1="6" x2="18" y2="18"></line>
+                </svg>
+                {% endif %}
+            </div>
+            <div class="result-body">
+                <div class="result-label">Prediction Result</div>
+                <div class="result-status">
+                    {% if result == 'PASS' %}✅ PASS{% else %}❌ FAIL{% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <a href="/" class="btn-back">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Back to Home
+        </a>
+
+    </div>
+
+    <!-- Shared JS from frontend/static/js/ -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
